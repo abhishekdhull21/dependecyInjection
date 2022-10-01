@@ -10,28 +10,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ca.sheridancollege.treves.beans.Config;
 import ca.sheridancollege.treves.beans.Message;
+import ca.sheridancollege.treves.beans.ReusableRocket;
 import ca.sheridancollege.treves.beans.Student;
 
 @Controller
-public class HomeController {
-
-	@GetMapping("/")
-	public String login() {
-		return "index.html";
+public class ReusableRocketController {
+	@GetMapping("reusablerocket/index")
+	public String index() {
+		return ("reusablerocket/index");
 	}
 
-	@PostMapping("/welcome")
-	public String welcome(@RequestParam String username, @RequestParam String password, Model model) {
+	@PostMapping("/reusablerocket/working")
+	public String working(@RequestParam String name, @RequestParam int height, @RequestParam int capacity,
+			@RequestParam int reuses, Model model) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+		ReusableRocket reusableRocket = context.getBean("reusablerocket", ReusableRocket.class);
 		Student student = context.getBean("student", Student.class);
 		Message message = context.getBean("message", Message.class);
 		message.console(student.toString());
-		if (username.equals(student.getName()) && password.endsWith(student.getStudentNumber())) {
-			model.addAttribute("student", student);
-			return "welcome.html";
-		}
-		model.addAttribute("error", "Please enter correct credentials");
-		return "index.html";
-
+		reusableRocket.setCapacity(capacity);
+		reusableRocket.setHeight(capacity);
+		reusableRocket.setName(name);
+		reusableRocket.setReuses(reuses);
+		model.addAttribute("reusablerocket", reusableRocket);
+		return ("reusablerocket/working");
 	}
 }

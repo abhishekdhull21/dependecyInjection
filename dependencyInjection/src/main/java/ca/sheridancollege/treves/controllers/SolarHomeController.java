@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ca.sheridancollege.treves.beans.Config;
+import ca.sheridancollege.treves.beans.Message;
 import ca.sheridancollege.treves.beans.SolarHome;
+import ca.sheridancollege.treves.beans.Student;
 
 @Controller
 public class SolarHomeController {
@@ -23,6 +25,9 @@ public class SolarHomeController {
 			@RequestParam String cardinal_direction, @RequestParam String heating_type, Model model) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
 		SolarHome solarhome = context.getBean("solarhome", SolarHome.class);
+		Student student = context.getBean("student", Student.class);
+		Message message = context.getBean("message", Message.class);
+		message.console(student.toString());
 		solarhome.setStyle(style);
 		solarhome.setSize(size);
 		solarhome.setIndex(index);

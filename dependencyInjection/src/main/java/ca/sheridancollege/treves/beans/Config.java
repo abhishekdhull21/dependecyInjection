@@ -26,4 +26,14 @@ public class Config {
 	SolarHome solarHomeBean() {
 		return new SolarHome();
 	}
+
+	@Bean(name = "hybridcar")
+	HybridCar hybridCarBean() {
+		return new HybridCar();
+	}
+
+	@Bean(name = "reusablerocket")
+	ReusableRocket reusableRocketBean() {
+		return new ReusableRocket();
+	}
 }
