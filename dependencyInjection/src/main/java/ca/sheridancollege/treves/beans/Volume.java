@@ -1,4 +1,4 @@
-package ca.sheridancollege.treves;
+package ca.sheridancollege.treves.beans;
 
 public class Volume {
 	private int height;

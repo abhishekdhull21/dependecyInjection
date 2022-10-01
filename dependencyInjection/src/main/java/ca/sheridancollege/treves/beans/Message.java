@@ -13,7 +13,7 @@ public class Message {
 	}
 
 	public void console(String message) {
-		 System.out.println(message);	
+		 System.out.println(message);
 		 }
 	@Override
 	public String toString() {
