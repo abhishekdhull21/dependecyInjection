@@ -5,7 +5,7 @@
 <body>
 	<h1>Login</h1>
 	<form action="/welcome" method="post">
-	<h3 th:if="${error} != ''"></h3>
+	<h3 style="color: red;"th:text="${error}"></h3>
 		<label for="fname">Username</label><br>
 		<input type="text" name="username" required><br>
 		<label for="lname">Password</label><br>
